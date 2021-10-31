@@ -5,7 +5,8 @@
  (Make sure you also specify on the Google Doc)
 */
 const express = require("express");
-let movielistdatabase = [" "];
+let movielistdatabase = ["The Gentlemen", "Hypnotic"];
+let myhtml = " ";
 let app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -26,11 +27,13 @@ app.post("/myForm", (req, res) => {
   // Add your implementation here
   let formData = req.body;
   let movie = formData.movieName;
+  
 
-  //let myhtml = " ";
-  //movieNames.forEach(name => myhtml += "<h1>" + name + "</h1>")
+  movielist = (movie.replace(/,/g, "\n" , movie[0].toUpperCase() + movie.toLowerCase()));
+
+ // movie.forEach(name => myhtml += "<h1>" + name + "</h1>")
   //app.get("/hello", (req, res) => res.send(myhtml));
-  movielistdatabase.append(movie.replace(/,/g, "\n" , movie[0].toUpperCase() + movie.toLowerCase()));
+  movielistdatabase = (movielist);
   
   //let movieList = replaceComma(movie);
  // function replaceComma(data) {
@@ -60,10 +63,6 @@ app.get("/myListQueryString", (req, res) => {
 app.get("/search/:movieName", (req, res) => {
   // Add your implementation here
   let movie = req.query.movieName;
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000 🚀");
 });
 
 app.listen(3000, () => {
